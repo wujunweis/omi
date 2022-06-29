@@ -10,8 +10,8 @@
   },
   "scripts": {
     "install": "npm-run-all --serial install:*",
-    "install:main": "cd main && npm i",
-    "install:sub-vue": "cd child && npm i",
+    "install:main": "cd main && yarn install",
+    "install:sub-vue": "cd child && yarn install",
     "start": "npm-run-all --parallel start:*",
     "start:main": "cd main && npm start",
     "start:child1": "cd child && npm start",
