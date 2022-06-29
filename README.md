@@ -1,1 +1,4 @@
-# omi demo 
+# omi demo - qiankun
+- default - any
+- umi-demo - umi
+
