@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNF宏插件</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 标题栏 -->
+        <header class="header">
+            <h1>🎮 DNF宏插件</h1>
+            <div class="version">v1.0.0</div>
+        </header>
+
+        <!-- 状态显示区 -->
+        <section class="status-section">
+            <div class="status-card">
+                <div class="status-indicator" id="recordingStatus">
+                    <span class="status-dot"></span>
+                    <span class="status-text">待机中</span>
+                </div>
+                <div class="status-indicator" id="playingStatus">
+                    <span class="status-dot"></span>
+                    <span class="status-text">未播放</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 录制控制区 -->
+        <section class="control-section">
+            <h3>📹 录制控制</h3>
+            <div class="control-buttons">
+                <button id="startRecordBtn" class="btn btn-record">
+                    <span class="btn-icon">🔴</span>
+                    开始录制
+                </button>
+                <button id="stopRecordBtn" class="btn btn-stop" disabled>
+                    <span class="btn-icon">⏹️</span>
+                    停止录制
+                </button>
+            </div>
+            <div class="recording-info" id="recordingInfo" style="display: none;">
+                <div class="info-item">
+                    <span class="label">录制时间:</span>
+                    <span id="recordingTime">00:00</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">操作数量:</span>
+                    <span id="actionCount">0</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 播放控制区 -->
+        <section class="control-section">
+            <h3>▶️ 播放控制</h3>
+            <div class="control-buttons">
+                <button id="startPlayBtn" class="btn btn-play" disabled>
+                    <span class="btn-icon">▶️</span>
+                    开始播放
+                </button>
+                <button id="stopPlayBtn" class="btn btn-stop" disabled>
+                    <span class="btn-icon">⏹️</span>
+                    停止播放
+                </button>
+            </div>
+            
+            <!-- 播放选项 -->
+            <div class="play-options">
+                <div class="option-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="loopPlayback">
+                        <span class="checkmark"></span>
+                        循环播放
+                    </label>
+                </div>
+                <div class="option-group">
+                    <label for="loopCount">循环次数:</label>
+                    <input type="number" id="loopCount" min="1" max="9999" value="1" class="input-small">
+                </div>
+                <div class="option-group">
+                    <label for="playSpeed">播放速度:</label>
+                    <select id="playSpeed" class="select-small">
+                        <option value="0.5">0.5x</option>
+                        <option value="1.0" selected>1.0x</option>
+                        <option value="1.5">1.5x</option>
+                        <option value="2.0">2.0x</option>
+                        <option value="3.0">3.0x</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="playing-info" id="playingInfo" style="display: none;">
+                <div class="info-item">
+                    <span class="label">当前循环:</span>
+                    <span id="currentLoop">1</span> / <span id="maxLoop">1</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 宏管理区 -->
+        <section class="control-section">
+            <h3>💾 宏管理</h3>
+            <div class="macro-save">
+                <input type="text" id="macroName" placeholder="输入宏名称..." class="input-text">
+                <button id="saveMacroBtn" class="btn btn-save" disabled>
+                    <span class="btn-icon">💾</span>
+                    保存宏
+                </button>
+            </div>
+            
+            <div class="macro-list">
+                <select id="macroSelect" class="select-full">
+                    <option value="">选择已保存的宏...</option>
+                </select>
+                <div class="macro-actions">
+                    <button id="loadMacroBtn" class="btn btn-load" disabled>
+                        <span class="btn-icon">📂</span>
+                        加载
+                    </button>
+                    <button id="deleteMacroBtn" class="btn btn-delete" disabled>
+                        <span class="btn-icon">🗑️</span>
+                        删除
+                    </button>
+                </div>
+            </div>
+
+            <div class="current-macro" id="currentMacroInfo" style="display: none;">
+                <h4>当前宏信息</h4>
+                <div class="macro-details">
+                    <div class="detail-item">
+                        <span class="label">名称:</span>
+                        <span id="currentMacroName">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">操作数:</span>
+                        <span id="currentMacroActions">0</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">时长:</span>
+                        <span id="currentMacroDuration">0ms</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 快捷键说明 -->
+        <section class="hotkey-section">
+            <h3>⌨️ 快捷键</h3>
+            <div class="hotkey-list">
+                <div class="hotkey-item">
+                    <span class="hotkey">F9</span>
+                    <span class="description">开始/停止录制</span>
+                </div>
+                <div class="hotkey-item">
+                    <span class="hotkey">F10</span>
+                    <span class="description">开始/停止播放</span>
+                </div>
+                <div class="hotkey-item">
+                    <span class="hotkey">F11</span>
+                    <span class="description">紧急停止所有操作</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 底部信息 -->
+        <footer class="footer">
+            <div class="footer-text">
+                DNF宏插件 - 让游戏更轻松！
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

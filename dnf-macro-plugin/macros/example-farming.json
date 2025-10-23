@@ -1,0 +1,97 @@
+{
+  "name": "示例刷图宏",
+  "description": "演示自动刷图的宏示例",
+  "actions": [
+    {
+      "type": "mouseclick",
+      "button": 1,
+      "x": 400,
+      "y": 300,
+      "delay": 0,
+      "timestamp": 0
+    },
+    {
+      "type": "keydown",
+      "keycode": 77,
+      "rawcode": 77,
+      "delay": 500,
+      "timestamp": 500
+    },
+    {
+      "type": "keyup",
+      "keycode": 77,
+      "rawcode": 77,
+      "delay": 50,
+      "timestamp": 550
+    },
+    {
+      "type": "keydown",
+      "keycode": 77,
+      "rawcode": 77,
+      "delay": 1000,
+      "timestamp": 1550
+    },
+    {
+      "type": "keyup",
+      "keycode": 77,
+      "rawcode": 77,
+      "delay": 50,
+      "timestamp": 1600
+    },
+    {
+      "type": "keydown",
+      "keycode": 16,
+      "rawcode": 16,
+      "delay": 800,
+      "timestamp": 2400
+    },
+    {
+      "type": "keyup",
+      "keycode": 16,
+      "rawcode": 16,
+      "delay": 50,
+      "timestamp": 2450
+    },
+    {
+      "type": "keydown",
+      "keycode": 77,
+      "rawcode": 77,
+      "delay": 1200,
+      "timestamp": 3650
+    },
+    {
+      "type": "keyup",
+      "keycode": 77,
+      "rawcode": 77,
+      "delay": 50,
+      "timestamp": 3700
+    },
+    {
+      "type": "mouseclick",
+      "button": 1,
+      "x": 500,
+      "y": 400,
+      "delay": 2000,
+      "timestamp": 5700
+    },
+    {
+      "type": "keydown",
+      "keycode": 28,
+      "rawcode": 28,
+      "delay": 1000,
+      "timestamp": 6700
+    },
+    {
+      "type": "keyup",
+      "keycode": 28,
+      "rawcode": 28,
+      "delay": 50,
+      "timestamp": 6750
+    }
+  ],
+  "duration": 6750,
+  "createdAt": "2024-01-01T12:00:00.000Z",
+  "actionCount": 12,
+  "tags": ["刷图", "自动", "示例"],
+  "notes": "这是一个示例刷图宏，包含移动、攻击、捡取物品等操作，适合简单的副本刷取"
+}

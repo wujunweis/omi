@@ -1,0 +1,60 @@
+{
+  "name": "dnf-macro-plugin",
+  "version": "1.0.0",
+  "description": "DNF游戏宏录制和回放插件",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build": "electron-builder",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux",
+    "install-deps": "node scripts/install.js",
+    "test": "node scripts/test.js",
+    "electron-rebuild": "electron-rebuild",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "keywords": [
+    "dnf",
+    "macro",
+    "gaming",
+    "automation",
+    "electron"
+  ],
+  "author": "DNF Macro Plugin Developer",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^27.0.0",
+    "electron-builder": "^24.6.4"
+  },
+  "dependencies": {
+    "robotjs": "^0.6.0",
+    "ioHook": "^0.1.17",
+    "node-global-key-listener": "^0.1.1"
+  },
+  "build": {
+    "appId": "com.dnf.macro.plugin",
+    "productName": "DNF宏插件",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "assets/**/*",
+      "node_modules/**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/icon.icns"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "assets/icon.png"
+    }
+  }
+}

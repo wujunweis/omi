@@ -1,0 +1,67 @@
+{
+  "name": "示例技能连招",
+  "description": "演示技能连招的宏示例",
+  "actions": [
+    {
+      "type": "keydown",
+      "keycode": 16,
+      "rawcode": 16,
+      "delay": 0,
+      "timestamp": 0
+    },
+    {
+      "type": "keyup",
+      "keycode": 16,
+      "rawcode": 16,
+      "delay": 50,
+      "timestamp": 50
+    },
+    {
+      "type": "keydown",
+      "keycode": 17,
+      "rawcode": 17,
+      "delay": 200,
+      "timestamp": 250
+    },
+    {
+      "type": "keyup",
+      "keycode": 17,
+      "rawcode": 17,
+      "delay": 50,
+      "timestamp": 300
+    },
+    {
+      "type": "keydown",
+      "keycode": 18,
+      "rawcode": 18,
+      "delay": 300,
+      "timestamp": 600
+    },
+    {
+      "type": "keyup",
+      "keycode": 18,
+      "rawcode": 18,
+      "delay": 50,
+      "timestamp": 650
+    },
+    {
+      "type": "keydown",
+      "keycode": 19,
+      "rawcode": 19,
+      "delay": 400,
+      "timestamp": 1050
+    },
+    {
+      "type": "keyup",
+      "keycode": 19,
+      "rawcode": 19,
+      "delay": 50,
+      "timestamp": 1100
+    }
+  ],
+  "duration": 1100,
+  "createdAt": "2024-01-01T12:00:00.000Z",
+  "actionCount": 8,
+  "tags": ["技能", "连招", "示例"],
+  "notes": "这是一个示例技能连招宏，按键顺序为Q-W-E-R，适合大部分职业的基础连招"
+}
