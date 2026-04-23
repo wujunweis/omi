@@ -7,12 +7,7 @@
     "vscode": {
       "settings": {
         "terminal.integrated.defaultProfile.linux": "bash"
-      },
-      "extensions": [
-        "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode",
-        "Vue.volar"
-      ]
+      }
     }
   }
 }
