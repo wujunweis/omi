@@ -7,6 +7,31 @@ LOG_PREFIX="[devcontainer post-create]"
 
 mkdir -p "$ROOT_DIR/.devcontainer"
 
+run_with_retry() {
+  local label="$1"
+  local max_attempts="$2"
+  shift 2
+
+  local attempt=1
+  local delay=3
+  while [ "$attempt" -le "$max_attempts" ]; do
+    echo "$LOG_PREFIX $label (attempt $attempt/$max_attempts)..."
+    if "$@"; then
+      return 0
+    fi
+
+    if [ "$attempt" -lt "$max_attempts" ]; then
+      echo "$LOG_PREFIX $label failed, retrying in ${delay}s..." >&2
+      sleep "$delay"
+      delay=$((delay * 2))
+    fi
+    attempt=$((attempt + 1))
+  done
+
+  echo "$LOG_PREFIX $label failed after $max_attempts attempts." >&2
+  return 1
+}
+
 finalize() {
   local exit_code="$1"
   if [ "$exit_code" -eq 0 ]; then
@@ -20,9 +45,11 @@ finalize() {
 
 trap 'finalize $?' EXIT
 
-echo "$LOG_PREFIX installing workspace dependencies..."
 cd "$ROOT_DIR"
-npm install
+npm config set fetch-retries 5
+npm config set fetch-retry-factor 2
+npm config set fetch-retry-mintimeout 2000
+npm config set fetch-retry-maxtimeout 30000
 
-echo "$LOG_PREFIX installing multi-app dependencies..."
-npm run install
+run_with_retry "installing workspace dependencies" 3 npm install || true
+run_with_retry "installing multi-app dependencies" 3 npm run install || true
